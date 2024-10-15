@@ -1,5 +1,3 @@
-if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
-
 -- AstroCore provides a central place to modify mappings, vim options, autocommands, and more!
 -- Configuration documentation can be found with `:h astrocore`
 -- NOTE: We highly recommend setting up the Lua Language Server (`:LspInstall lua_ls`)
@@ -15,28 +13,41 @@ return {
       large_buf = { size = 1024 * 256, lines = 10000 }, -- set global limits for large files for disabling features like treesitter
       autopairs = true, -- enable autopairs at start
       cmp = true, -- enable completion at start
-      diagnostics_mode = 3, -- diagnostic mode on start (0 = off, 1 = no signs/virtual text, 2 = no virtual text, 3 = on)
+      diagnostics_mode = 2, -- diagnostic mode on start (0 = off, 1 = no signs/virtual text, 2 = no virtual text, 3 = on)
       highlighturl = true, -- highlight URLs at start
-      notifications = true, -- enable notifications at start
+      notifications = false, -- enable notifications at start
     },
     -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
     diagnostics = {
-      virtual_text = true,
+      virtual_text = false,
+      update_in_insert = false,
       underline = true,
     },
     -- vim options can be configured here
     options = {
       opt = { -- vim.opt.<key>
-        relativenumber = true, -- sets vim.opt.relativenumber
+        relativenumber = false, -- sets vim.opt.relativenumber
         number = true, -- sets vim.opt.number
         spell = false, -- sets vim.opt.spell
         signcolumn = "yes", -- sets vim.opt.signcolumn to yes
         wrap = false, -- sets vim.opt.wrap
+        formatoptions = {
+          q = true, -- continue comments with gq"
+          c = true, -- Auto-wrap comments using textwidth
+          r = false, -- Continue comments when pressing Enter
+          o = false, -- same as above but on O/o
+          n = true, -- Recognize numbered lists
+          t = false, -- autowrap lines using text width value
+          j = true, -- remove a comment leader when joining lines.
+          -- Only break if the line was not longer than 'textwidth' when the insert
+          -- started and only at a white character that has been entered during the
+          -- current insert command.
+          l = true,
+          v = true,
+        },
       },
       g = { -- vim.g.<key>
         -- configure global vim variables (vim.g)
-        -- NOTE: `mapleader` and `maplocalleader` must be set in the AstroNvim opts or before `lazy.setup`
-        -- This can be found in the `lua/lazy_setup.lua` file
       },
     },
     -- Mappings can be configured through AstroCore as well.
@@ -45,10 +56,11 @@ return {
       -- first key is the mode
       n = {
         -- second key is the lefthand side of the map
+        ["<Leader>v"] = { "<cmd>vsplit<cr>", desc = "Vsplit" },
 
         -- navigate buffer tabs
-        ["]b"] = { function() require("astrocore.buffer").nav(vim.v.count1) end, desc = "Next buffer" },
-        ["[b"] = { function() require("astrocore.buffer").nav(-vim.v.count1) end, desc = "Previous buffer" },
+        ["H"] = { function() require("astrocore.buffer").nav(vim.v.count1) end, desc = "Next buffer" },
+        ["L"] = { function() require("astrocore.buffer").nav(-vim.v.count1) end, desc = "Previous buffer" },
 
         -- mappings seen under group name "Buffer"
         ["<Leader>bd"] = {
