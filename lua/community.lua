@@ -5,7 +5,7 @@
 ---@type LazySpec
 return {
   "AstroNvim/astrocommunity",
-  { import = "astrocommunity.motion.mini-surround" },
   { import = "astrocommunity.completion.magazine-nvim" },
+  { import = "astrocommunity.fuzzy-finder/telescope-zoxide" },
   -- import/override with your plugins folder
 }
