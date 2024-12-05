@@ -15,7 +15,7 @@ return {
       cmp = true, -- enable completion at start
       diagnostics_mode = 2, -- diagnostic mode on start (0 = off, 1 = no signs/virtual text, 2 = no virtual text, 3 = on)
       highlighturl = true, -- highlight URLs at start
-      notifications = false, -- enable notifications at start
+      notifications = true, -- enable notifications at start
     },
     -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
     diagnostics = {
@@ -26,6 +26,7 @@ return {
     -- vim options can be configured here
     options = {
       opt = { -- vim.opt.<key>
+        winblend = 10,
         clipboard = "",
         relativenumber = false, -- sets vim.opt.relativenumber
         number = true, -- sets vim.opt.number
@@ -43,8 +44,8 @@ return {
           -- Only break if the line was not longer than 'textwidth' when the insert
           -- started and only at a white character that has been entered during the
           -- current insert command.
-          l = true,
-          v = true,
+          l = false,
+          v = false,
         },
       },
       g = { -- vim.g.<key>
@@ -72,6 +73,19 @@ return {
           end,
           desc = "Close buffer from tabline",
         },
+
+        ["<Leader>gg"] = {
+          function()
+            require("neo-tree.command").execute {
+              action = "focus",
+              source = "git_status",
+              position = "right",
+            }
+          end,
+          desc = "Git",
+        },
+
+        ["<Leader>h"] = {},
 
         -- tables with just a `desc` key will be registered with which-key if it's installed
         -- this is useful for naming menus

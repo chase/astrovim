@@ -4,18 +4,31 @@ return {
   ft = { "git_rebase", "gitcommit" }, -- so ftplugins are loaded
   dependencies = {
     "stevearc/dressing.nvim",
+    "nvim-telescope/telescope.nvim",
+    "rcarriga/nvim-notify",
     {
       "AstroNvim/astrocore",
       opts = {
         mappings = {
           n = {
-            ["<Leader>gi"] = { function() require("tinygit").smartCommit() end, desc = "Stage (tinygit)" },
             ["<Leader>gn"] = { function() require("tinygit").smartCommit() end, desc = "New commit" },
-            ["<Leader>gP"] = { function() require("tinygit").push { forceWithLease = true } end, desc = "Push" },
+            ["<Leader>gP"] = {
+              function() require("tinygit").push { forceWithLease = true, createGitHubPr = true } end,
+              desc = "Push",
+            },
           },
         },
       },
     },
   },
-  opts = {},
+  config = function()
+    require("tinygit").setup {
+      commitMsg = {
+        -- commitPreview = false,
+      },
+      backdrop = {
+        enabled = false,
+      },
+    }
+  end,
 }

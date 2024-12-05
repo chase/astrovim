@@ -7,5 +7,6 @@ return {
   "AstroNvim/astrocommunity",
   { import = "astrocommunity.completion.magazine-nvim" },
   { import = "astrocommunity.fuzzy-finder/telescope-zoxide" },
+  { import = "astrocommunity.quickfix/quicker-nvim" },
   -- import/override with your plugins folder
 }

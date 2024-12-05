@@ -6,7 +6,9 @@ return {
     opts.statusline = { -- statusline
       hl = { fg = "fg", bg = "bg" },
       status.component.mode(),
-      status.component.git_branch(),
+      status.component.git_branch {
+        hl = { fg = "fg", bg = "bg" },
+      },
       status.component.file_info(),
       status.component.git_diff(),
       status.component.diagnostics(),

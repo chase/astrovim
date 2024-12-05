@@ -69,12 +69,12 @@ return {
         require("astrocore").list_insert_unique(opts.ensure_installed, { "vtsls", "biome", "js-debug-adapter" })
     end,
   },
-  {
-    "vuki656/package-info.nvim",
-    dependencies = { "MunifTanjim/nui.nvim" },
-    opts = {},
-    event = "BufRead package.json",
-  },
+  -- {
+  --   "vuki656/package-info.nvim",
+  --   dependencies = { "MunifTanjim/nui.nvim" },
+  --   opts = {},
+  --   event = "BufRead package.json",
+  -- },
   {
     "yioneko/nvim-vtsls",
     lazy = true,
