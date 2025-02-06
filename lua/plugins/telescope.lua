@@ -3,15 +3,7 @@ return {
   specs = {
     {
       "AstroNvim/astrocore",
-      opts = function(_, opts)
-        local get_icon = require("astroui").get_icon
-        local maps = opts.mappings
-        maps.n["<Leader>s"] = { desc = get_icon("Search", 1, true) .. "Search" }
-        maps.n["<Leader>st"] = { function() require("telescope.builtin").live_grep() end, desc = "Text" }
-        maps.n["<Leader>sf"] = { function() require("telescope.builtin").fd() end, desc = "Files" }
-        maps.n["<Leader>s<CR>"] =
-          { function() require("telescope.builtin").resume() end, desc = "Resume previous search" }
-      end,
+      opts = function(_, opts) end,
     },
   },
   opts = function(_, opts)

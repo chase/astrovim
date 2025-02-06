@@ -93,6 +93,8 @@ return {
 
         -- setting a mapping to false will disable it
         -- ["<C-S>"] = false,
+        ["<leader>ff"] = false,
+        ["<leader>ft"] = false,
       },
     },
   },
